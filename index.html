@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Migration Specialist – Single Wave Breaker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- DM Sans from Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* RESET & GLOBAL */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'DM+Sans', Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* NAV BAR */
+    nav {
+      background-color: #000514;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-left img {
+      height: 36px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.95rem;
+      border-radius: 4px;
+      transition: 0.3s ease;
+    }
+    .nav-links a:hover {
+      background-color: #1492FF;
+      transform: scale(1.05);
+    }
+
+    .btn-contact {
+      background-color: #1492FF;
+      color: #fff;
+      padding: 0.5rem 0.75rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 0.95rem;
+    }
+    .btn-contact:hover {
+      background-color: #117ad8;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #fff 0%, #25ddf6 100%);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      color: #000;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .hero .subheading {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: #333;
+      max-width: 700px;
+      margin: 0.5rem auto 1.5rem;
+      line-height: 1.4;
+    }
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    /* MAIN SECTIONS */
+    section {
+      max-width: 1080px;
+      margin: 2rem auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    section h2 {
+      color: #000;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    section p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    section ul {
+      list-style: disc;
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .section-subheading {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 1rem 0 0.5rem;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.4rem;
+      display: inline-block;
+      border-radius: 3px;
+      margin-top: 0.5rem;
+      font-family: Consolas, monospace;
+      white-space: pre;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    table th,
+    table td {
+      text-align: left;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      vertical-align: top;
+    }
+    table thead tr {
+      background: #f4f4f4;
+    }
+
+    /* SINGLE WAVE BREAKER */
+    .wave-breaker {
+      background: #fff; /* No gradient; pure white background (or any color you want) */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .wave-breaker img {
+   
+      /* Adjust width or other styling as needed */
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #000514;
+      color: #fff;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    footer p a {
+      color: #1492ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links, .btn-contact {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+      .hero .subheading {
+        font-size: 1rem;
+      }
+      section {
+        margin: 1rem;
+        padding: 1rem;
+      }
+      table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV BAR -->
+<nav>
+  <div class="nav-left">
+    <a href="#home">
+      <img src="https://backend.teifi.ca/uploads/logo_9f52442b5a.png" alt="Teifi-inspired Logo"/>
+    </a>
+    <div class="nav-links">
+      <a href="#plan">Migration Plan</a>
+      <a href="#cleanup">Data Cleanup</a>
+      <a href="#qa">QA &amp; Debugging</a>
+      <a href="#optimize">High-Volume Opt.</a>
+      <a href="#issues">Live Issues</a>
+      <a href="#migration-example">My Migration</a>
+    </div>
+  </div>
+  <button class="btn-contact">Contact Us</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <h1>Data Migration Specialist Technical Challenge</h1>
+  <div class="subheading">
+    Leading a high-volume migration from Magento to Shopify Plus with over 5M records, a tight downtime window,
+    and complex ERP/CRM integrations. This test assesses how you plan, clean, validate, and troubleshoot data migrations independently.
+  </div>
+  <p>
+    Scroll down to see the entire plan, from conceptual overview, data cleanup,
+    QA &amp; debugging, to live issue response and a real-life migration example!
+  </p>
+</div>
+
+<!-- SECTION 1: MIGRATION PLAN -->
+<section id="plan">
+  <h2>1. Migration Plan (Conceptual)</h2>
+  <p><strong>Task:</strong> Outline your end-to-end plan for extracting data from Magento, reformatting for Shopify, loading into Shopify via API, and syncing with ERP/CRM systems. Include tools, techniques, and key Python libraries or Excel/SQL strategies you'd use.</p>
+
+  <h3 class="section-subheading">Discovery &amp; Scoping (Week 0)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>What</th>
+        <th>Why</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Inventory all objects – products, variants, customers, orders, gift cards, discounts, meta fields, custom attributes.</td>
+        <td>Know data volumes, identify edge cases and any custom tables or fields.</td>
+      </tr>
+      <tr>
+        <td>Dependency mapping – Magento ↔ ERP ↔ CRM ↔ WMS, scheduled jobs, webhooks.</td>
+        <td>Clearly identify data ownership and determine the correct sequence for synchronization.</td>
+      </tr>
+      <tr>
+        <td>Downtime window negotiation (e.g., Fri 22:00 → Sat 04:00 UTC).</td>
+        <td>Critical for planning batch size and parallel execution strategies.</td>
+      </tr>
+      <tr>
+        <td>Success criteria – record counts ±0.1%, financial totals ±0.01%, SEO slugs preserved, no 5xx from Shopify API.</td>
+        <td>Provides clear and measurable objectives for migration success.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-subheading">Environment &amp; Tooling</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Stack / Tool</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Extraction</td>
+        <td>Python 3.11, MySQL connector Python, pymongo, direct SQL dumps, Magento REST API for incremental changes.</td>
+      </tr>
+      <tr>
+        <td>Staging &amp; Transform</td>
+        <td>PostgreSQL (RDS or Docker), dbt for repeatable SQL models, Pandas for data transformations, AWS S3 for file storage.</td>
+      </tr>
+      <tr>
+        <td>Validation</td>
+        <td>Great Expectations for automated data quality checks, pytest for unit tests, custom checksum scripts for validation.</td>
+      </tr>
+      <tr>
+        <td>Load</td>
+        <td>Shopify REST &amp; GraphQL APIs, Bulk Operations GraphQL (large data uploads).</td>
+      </tr>
+      <tr>
+        <td>Scheduling / Orchestration</td>
+        <td>Prefect 2.0 or Apache Airflow for workflow automation, retries, and detailed logging.</td>
+      </tr>
+      <tr>
+        <td>ERP/CRM Sync</td>
+        <td>Native connectors if available; otherwise webhooks → AWS Lambda → ERP APIs; CDC tables for replayable sync.</td>
+      </tr>
+      <tr>
+        <td>Monitoring</td>
+        <td>Datadog/Grafana for real-time tracking, alerting via Slack for anomalies.</td>
+      </tr>
+      <tr>
+        <td>Rollback</td>
+        <td>Pre-migration Shopify export, RDS snapshots for staging database rollback points.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-subheading">Detailed Workflow</h3>
+  <ul>
+    <li><strong>Pre-Cutover “Full” Migration (T - 7 days → T - 1 hr):</strong>
+      <ul>
+        <li>Extract large tables in chunks (SQL) &amp; smaller sets with Magento REST</li>
+        <li>Stage &amp; clean with dbt &amp; Pandas, flatten EAV schema</li>
+        <li>Enrich &amp; map (attributes, SEO, etc.)</li>
+        <li>Bulk load to Shopify sandbox (GraphQL Bulk Operation)</li>
+        <li>QA: Great Expectations, spot checks, financial totals with SQL</li>
+      </ul>
+    </li>
+    <li><strong>Delta / Incremental Loads (T - 1 hr → T 0):</strong>
+      <ul>
+        <li>Capture incremental changes using timestamps or webhooks</li>
+        <li>Repeat ETL for delta records only</li>
+      </ul>
+    </li>
+    <li><strong>Cutover (Downtime Window):</strong>
+      <ul>
+        <li>Maintenance mode, final data snapshot</li>
+        <li>Rapid delta uploads in parallel</li>
+        <li>DNS/CDN switch, ERP/CRM sync triggered</li>
+      </ul>
+    </li>
+    <li><strong>Validation &amp; Sign-off:</strong>
+      <ul>
+        <li>Automated scripts for record counts, financial totals, sample hashes</li>
+        <li>Stakeholder UAT checklist, perf test (500 concurrent checkouts)</li>
+      </ul>
+    </li>
+    <li><strong>Rollback / Contingency:</strong>
+      <ul>
+        <li>Bulk API errors &gt;2% → pause &amp; review error CSV</li>
+        <li>Delays → revert DNS, reactivate Magento</li>
+        <li>Critical post-go-live bug → Shopify Store Import revert, immediate redeployment</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3 class="section-subheading">Key Python/SQL/Excel Techniques</h3>
+  <ul>
+    <li>Pandas for efficient data manipulation; pyarrow for fast parquet handling</li>
+    <li>psycopg2 for PostgreSQL bulk data operations</li>
+    <li>SQL window functions (ROW_NUMBER) for deduplication</li>
+    <li>Excel Power Query for flexible stakeholder data reviews</li>
+  </ul>
+</section>
+
+<!-- SINGLE WAVE BREAKER (just 1 image, no gradient) -->
+<div class="wave-breaker">
+  <img src="image2.png" alt="Single Wave Breaker Image">
+</div>
+
+<!-- SECTION 2: DATA CLEANUP -->
+<section id="cleanup">
+  <h2>2. Data Cleanup Plan (Practical Thinking)</h2>
+  <p><strong>Scenario:</strong> You find duplicate customers, malformed SKUs, missing product descriptions, and blank metafields.</p>
+  <p><strong>Task:</strong></p>
+  <ul>
+    <li>List the Python dependencies you'd use</li>
+    <li>Summarize what your script would do in 4–6 bullet points</li>
+    <li>Write one SQL query that identifies duplicate customers (email or phone)</li>
+  </ul>
+
+  <p><strong>Python Dependencies:</strong> pandas, numpy, regex, phonenumbers, openpyxl/csv</p>
+
+  <p><strong>Script Actions:</strong></p>
+  <ul>
+    <li>Deduplicate customer records by email/phone.</li>
+    <li>Correct SKU formats using regex.</li>
+    <li>Populate missing product descriptions and metafields.</li>
+    <li>Validate data types and Shopify constraints.</li>
+    <li>Log and summarize changes made.</li>
+  </ul>
+
+  <p><strong>SQL Duplicate Query:</strong></p>
+  <code>
+SELECT 'Email' AS DupField, email AS Identifier, COUNT(*) AS Count<br>
+FROM customers<br>
+WHERE email IS NOT NULL AND email &lt;&gt; ''<br>
+GROUP BY email<br>
+HAVING COUNT (*) &gt; 1<br>
+UNION ALL<br>
+SELECT 'Phone', phone, COUNT (*)<br>
+FROM customers<br>
+WHERE phone IS NOT NULL AND phone &lt;&gt; ''<br>
+GROUP BY phone<br>
+HAVING COUNT (*) &gt; 1;
+  </code>
+</section>
+
+<!-- SECTION 3: QA & DEBUGGING -->
+<section id="qa">
+  <h2>3. Post-Migration QA &amp; Debugging</h2>
+  <p><strong>Scenario:</strong> After launch, customers report:</p>
+  <ul>
+    <li>Incomplete order history</li>
+    <li>Mismatched inventory</li>
+    <li>Price discrepancies</li>
+  </ul>
+  <p><strong>Task:</strong></p>
+  <ul>
+    <li>Compare Shopify &amp; Magento data for validation (tools/scripts)</li>
+    <li>Trace &amp; fix inventory sync issues</li>
+    <li>Roll back or patch prices fast if wrong</li>
+  </ul>
+  <p>
+    • Compare datasets with pandas DataFrames.<br>
+    • Check order histories, product listings, &amp; customer data.<br>
+    • Trace inventory mismatches (SKU-by-SKU), fix with sync/manual updates.<br>
+    • Correct pricing quickly via bulk CSV or Shopify admin edits.
+  </p>
+</section>
+
+<!-- SECTION 4: HIGH-VOLUME OPT -->
+<section id="optimize">
+  <h2>4. High-Volume Optimization</h2>
+  <p><strong>Scenario:</strong> Only 6 hours for cutover &amp; facing Shopify API rate limits.</p>
+  <p><strong>Task:</strong></p>
+  <ul>
+    <li>How to optimize data uploads to stay within Shopify's API limits</li>
+    <li>Use Bulk APIs or parallel requests? Why?</li>
+    <li>Logging failed pushes &amp; retry automatically</li>
+  </ul>
+  <p>
+    • Batch &amp; parallel with caution to respect rate limits.<br>
+    • Prefer Bulk Operations for large scale; parallel for leftover data.<br>
+    • Detailed logging &amp; auto-retry for robustness.
+  </p>
+</section>
+
+<!-- SECTION 5: LIVE ISSUES -->
+<section id="issues">
+  <h2>5. Live Issue Response &amp; Communication</h2>
+  <p><strong>Scenario:</strong> A live store shows incorrect prices due to a migration issue. Customers are complaining.</p>
+  <p><strong>Task:</strong></p>
+  <ul>
+    <li>Immediate response plan</li>
+    <li>Short Slack message to internal stakeholders</li>
+    <li>Restore pricing within 30 minutes</li>
+  </ul>
+  <p>
+    <strong>Immediate Response:</strong> Rapid assessment, potential lockdown, quick fix.<br>
+    <strong>Slack Example:</strong> “Hey team – we’ve identified incorrect prices on the live store. I’m actively correcting this and expect resolution within 30 mins. Updates to follow.”<br>
+    <strong>Rapid Fix:</strong> Bulk CSV to correct prices, verify, communicate resolution, document lessons learned.
+  </p>
+</section>
+
+<!-- SECTION 6: MIGRATION EXAMPLE -->
+<section id="migration-example">
+  <h2>6. Your Migration</h2>
+  <p><strong>Task:</strong> Share an example of a data migration or large dataset cleanup you’ve handled.</p>
+
+  <p><strong>Problem:</strong></p>
+  <p>
+    I worked on a research project collecting &amp; analyzing clinical trial data from multiple online sources.
+    The challenge was merging disparate, inconsistent, and incomplete large-scale datasets from various web resources.
+    Required significant cleaning, restructuring, &amp; normalization for accuracy.
+  </p>
+
+  <p><strong>Tools &amp; Approach:</strong></p>
+  <ul>
+    <li><strong>Python Scripting:</strong> pandas, requests, BeautifulSoup, regex for scraping &amp; structuring</li>
+    <li><strong>Data Extraction &amp; Integration:</strong> Custom web scraping (GitHub WebMD Scraper)</li>
+    <li><strong>Data Cleaning &amp; Normalization:</strong> Handling missing values, deduping, standardizing formats</li>
+    <li><strong>Validation &amp; Verification:</strong> Python (pandas) for data integrity, correctness, consistency</li>
+  </ul>
+
+  <p><strong>Outcome:</strong></p>
+  <p>
+    Unified, high-quality dataset for advanced analytics, boosted reliability &amp; accuracy,
+    saved time, minimized manual errors, improved overall efficiency for the research project.
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Data Migration Specialist (Inspired by Teifi Digital)</p>
+  <p>Need to get in touch? <a href="#home">Return to Top</a></p>
+</footer>
+
+</body>
+</html>
