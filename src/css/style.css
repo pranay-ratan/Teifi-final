@@ -1,66 +1,27 @@
-/* Main styles for the website */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    padding: 20px;
 }
 
 header {
-    background: #35424a;
-    color: #ffffff;
-    padding: 20px 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
     text-align: center;
-}
-
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 15px;
-}
-
-nav a:hover {
-    background: #e8491d;
-    transition: background 0.3s ease;
 }
 
 section {
+    background-color: #fff;
     padding: 20px;
-    margin: 20px 0;
-    background: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
 }
 
 footer {
+    background-color: #333;
+    color: #fff;
     text-align: center;
     padding: 10px 0;
-    background: #35424a;
-    color: #ffffff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-/* Typography */
-h1, h2, h3 {
-    color: #35424a;
-}
-
-p {
-    margin: 10px 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    nav {
-        display: block;
-    }
-
-    nav a {
-        display: block;
-        margin: 5px 0;
-    }
 }

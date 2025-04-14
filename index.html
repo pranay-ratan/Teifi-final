@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Migration Solution</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic styling (you can expand on this) */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        main {
+            padding: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .intro {
+            padding: 1rem;
+            max-width: 1000px;
+            margin: 0 auto ;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        section {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        h2 {
+            color: #333;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background: #333;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Magento to Shopify Plus Migration</h1>
+</header>
+
+    <main>
+        <section class="intro">
+            <p>This website presents a solution for migrating a large dataset from Magento to Shopify Plus, addressing key challenges in data extraction, transformation, loading, and synchronization.</p>
+        </section>
+        <section id="task1">
+            <h2>1. Migration Plan</h2>
+            <p>The migration plan outlines a structured approach using <b>dbt</b> for transformations, <b>Python</b> with <b>pandas</b> for data handling, <b>Shopify Bulk API</b> for loading, and <b>Prefect</b> for orchestration. The plan includes extraction, staging, transformation, validation, loading, and synchronization with ERP/CRM systems.</p>
+        </section>
+
+        <section id="task2">
+            <h2>2. Data Cleanup Plan</h2>
+            <p>The data cleanup plan utilizes <b>pandas</b> for efficient data manipulation and cleaning. <b>Regex</b> is employed for correcting SKU formats, and a <b>SQL</b> query is used to identify duplicate customer records. Here's an example of the SQL query:</p>
+            <pre>
+                <code>
+                    SELECT 'Email' AS DupField, email AS Identifier, COUNT(*) AS Count
+                    FROM customers
+                    WHERE email IS NOT NULL AND email <> ''
+                    GROUP BY email
+                    HAVING COUNT(*) > 1
+                    UNION ALL
+                    SELECT 'Phone', phone, COUNT(*)
+                    FROM customers
+                    WHERE phone IS NOT NULL AND phone <> ''
+                    GROUP BY phone
+                    HAVING COUNT(*) > 1;
+                </code>
+            </pre>
+        </section>
+
+        <section id="task3">
+            <h2>3. Post-Migration QA & Debugging</h2>
+            <p>Post-migration QA involves comparing datasets using <b>pandas</b>, checking detailed order histories, product listings, and customer data. Inventory sync issues are traced via SKU-level comparisons. Correcting prices quickly is done using <b>Shopify's bulk CSV import</b> or manual bulk edits.</p>
+        </section>
+
+        <section id="task4">
+            <h2>4. High-Volume Optimization</h2>
+            <p>To optimize high-volume data uploads, we use batching and parallel requests within API limits. The <b>Shopify Bulk Operations API</b> is leveraged for scalability, and parallel requests are used sparingly for data unsupported by Bulk. Detailed logging and automatic retry mechanisms are implemented for robustness.</p>
+        </section>
+
+        <section id="task5">
+            <h2>5. Live Issue Response & Communication</h2>
+            <p>The immediate response to live issues, such as incorrect prices, involves rapid assessment and a potential temporary store lockdown. Communication to stakeholders is done via <b>Slack</b>. A rapid fix strategy is implemented, including a bulk <b>CSV</b> upload for immediate price corrections. An example message is:  "Hey team – we've identified incorrect prices on the live store. I'm actively correcting this and expect resolution within 30 mins. Updates to follow."</p>
+        </section>
+
+        <section id="task6">
+            <h2>6. Your Migration</h2>
+            <p>In a previous project, I managed a data migration involving clinical trial data from multiple online sources. The problem was consolidating inconsistent and incomplete datasets. We used <b>Python</b> for web scraping, <b>pandas</b> for data cleaning, and regular expressions for normalization. The approach involved custom scripts for data extraction, cleaning, and validation. The outcome was a unified, high-quality dataset for accurate analysis.</p>
+        </section>
+        <style>
+            pre {
+                background-color: #f0f0f0;
+                padding: 1rem;
+                border-radius: 5px;
+                overflow-x: auto;
+            }
+            
+            code {
+                font-family: monospace;
+                font-size: 0.9em;
+            }
+            
+            pre code {
+                display: block;
+                white-space: pre;
+                -webkit-overflow-scrolling: touch;
+            }
+        </style>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Data Migration Expert</p>
+    </footer>
+
+</body>
+</html>
