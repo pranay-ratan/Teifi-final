@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Data Migration Specialist – Single Wave Breaker</title>
+  <title>Data Migration Specialist – Single Wave Breaker with Video</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- DM Sans from Google Fonts -->
@@ -19,7 +19,7 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'DM Sans', Arial, sans-serif;
+      font-family: 'DM+Sans', Arial, sans-serif;
       background-color: #f9f9f9;
       color: #333;
     }
@@ -159,16 +159,42 @@
 
     /* SINGLE WAVE BREAKER */
     .wave-breaker {
-      background: #fff; /* No gradient; pure white background (or any color you want) */
+      background: #fff; /* no gradient */
       display: flex;
       justify-content: center;
       align-items: center;
     }
     .wave-breaker img {
-      /* Adjust width or other styling as needed */
-      max-width: 600px;
-      height: auto;
-      margin: 2rem 0;
+      /* Adjust width or height as needed */
+      max-width: 100%;
+    }
+
+    /* VIDEO SECTION */
+    .video-section {
+      max-width: 1080px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border-radius: 6px;
+    }
+    .video-section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #000;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .video-wrapper video {
+      width: 80%; /* or 100%, adjust to your preference */
+      border-radius: 4px;
+      outline: none;
     }
 
     /* FOOTER */
@@ -203,9 +229,8 @@
       table {
         font-size: 0.9rem;
       }
-      .wave-breaker img {
-        max-width: 90%;
-        margin: 1rem auto;
+      .video-wrapper video {
+        width: 100%;
       }
     }
   </style>
@@ -242,14 +267,24 @@
     QA &amp; debugging, to live issue response and a real-life migration example!
   </p>
 </div>
+<!-- VIDEO SECTION -->
+<div class="video-section">
+  <h2>Final Video</h2>
+  <div class="video-wrapper">
+    <!-- Replace final-video.mp4 with your actual path or filename -->
+    <video controls>
+      <source src="final-video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
 
 <!-- SECTION 1: MIGRATION PLAN -->
 <section id="plan">
   <h2>1. Migration Plan (Conceptual)</h2>
   <p><strong>Task:</strong> Outline your end-to-end plan for extracting data from Magento, reformatting for Shopify, loading into Shopify via API, and syncing with ERP/CRM systems. Include tools, techniques, and key Python libraries or Excel/SQL strategies you'd use.</p>
 
-  <h3 class="section-subheading">Discovery &amp; Scoping</h3>
-  <p><strong>Response:</strong> Following is the comprehensive plan for migrating data from Magento to Shopify Plus:</p>
+  <h3 class="section-subheading">Discovery &amp; Scoping (Week 0)</h3>
   <table>
     <thead>
       <tr>
@@ -288,7 +323,7 @@
     <tbody>
       <tr>
         <td>Extraction</td>
-        <td>Python 3.11, MySQL connector Python, PyMongo, direct SQL dumps, Magento REST API for incremental changes.</td>
+        <td>Python 3.11, MySQL connector Python, pymongo, direct SQL dumps, Magento REST API for incremental changes.</td>
       </tr>
       <tr>
         <td>Staging &amp; Transform</td>
@@ -323,58 +358,57 @@
 
   <h3 class="section-subheading">Detailed Workflow</h3>
   <ul>
-    <li><strong>Pre-Cutover "Full" Migration (T - 7 days → T - 1 hr):</strong>
+    <li><strong>Pre-Cutover “Full” Migration (T - 7 days → T - 1 hr):</strong>
       <ul>
-        <li>Extract: Large tables pulled in manageable chunks via SQL, smaller datasets through Magento REST API.</li>
-        <li>Stage &amp; Clean: dbt transforms Magento's EAV schema into flat, Shopify-compatible structures; clean data using Pandas.</li>
-        <li>Enrich &amp; Map: Attribute mappings to Shopify product types, tags, and metafields. Generate SEO-friendly slugs and URL redirects.</li>
-        <li>Bulk Load: Shopify sandbox bulk load using GraphQL Bulk Operation API.</li>
-        <li>QA: Automated checks via Great Expectations, visual spot checks, SQL-based financial totals verification.</li>
+        <li>Extract large tables in chunks (SQL) &amp; smaller sets with Magento REST</li>
+        <li>Stage &amp; clean with dbt &amp; Pandas, flatten EAV schema</li>
+        <li>Enrich &amp; map (attributes, SEO, etc.)</li>
+        <li>Bulk load to Shopify sandbox (GraphQL Bulk Operation)</li>
+        <li>QA: Great Expectations, spot checks, financial totals with SQL</li>
       </ul>
     </li>
     <li><strong>Delta / Incremental Loads (T - 1 hr → T 0):</strong>
       <ul>
-        <li>Capture incremental changes using timestamps and Magento webhooks.</li>
-        <li>Execute streamlined ETL for delta records only.</li>
+        <li>Capture incremental changes using timestamps or webhooks</li>
+        <li>Repeat ETL for delta records only</li>
       </ul>
     </li>
     <li><strong>Cutover (Downtime Window):</strong>
       <ul>
-        <li>Magento maintenance mode activation; final data snapshot.</li>
-        <li>Rapid delta uploads to Shopify with parallel bulk operations.</li>
-        <li>DNS/CDN switch to Shopify; ERP/CRM synchronization triggered.</li>
+        <li>Maintenance mode, final data snapshot</li>
+        <li>Rapid delta uploads in parallel</li>
+        <li>DNS/CDN switch, ERP/CRM sync triggered</li>
       </ul>
     </li>
-    <li><strong>Validation &amp; Sign-Off:</strong>
+    <li><strong>Validation &amp; Sign-off:</strong>
       <ul>
-        <li>Automated scripts for record counts, financial totals, and sample hashes comparison.</li>
-        <li>Stakeholder-approved UAT checklist.</li>
-        <li>Performance testing (500 simultaneous add-to-cart/checkouts).</li>
+        <li>Automated scripts for record counts, financial totals, sample hashes</li>
+        <li>Stakeholder UAT checklist, perf test (500 concurrent checkouts)</li>
       </ul>
     </li>
     <li><strong>Rollback / Contingency:</strong>
       <ul>
-        <li>Bulk API errors &gt;2% trigger pause and manual review.</li>
-        <li>Delays trigger DNS rollback and Magento reactivation.</li>
-        <li>Critical issues resolved via Shopify Store Import revert and immediate redeployment.</li>
+        <li>Bulk API errors &gt;2% → pause &amp; review error CSV</li>
+        <li>Delays → revert DNS, reactivate Magento</li>
+        <li>Critical post-go-live bug → Shopify Store Import revert, immediate redeployment</li>
       </ul>
     </li>
   </ul>
 
-  <h3 class="section-subheading">Key Python / SQL / Excel Techniques</h3>
+  <h3 class="section-subheading">Key Python/SQL/Excel Techniques</h3>
   <ul>
-    <li>Pandas for efficient data manipulation; PyArrow for fast parquet handling.</li>
-    <li>psycopg2 for PostgreSQL bulk data operations.</li>
-    <li>SQL window functions for deduplication.</li>
-    <li>Excel Power Query for flexible stakeholder data reviews.</li>
+    <li>Pandas for efficient data manipulation; pyarrow for fast parquet handling</li>
+    <li>psycopg2 for PostgreSQL bulk data operations</li>
+    <li>SQL window functions (ROW_NUMBER) for deduplication</li>
+    <li>Excel Power Query for flexible stakeholder data reviews</li>
   </ul>
-  <p><strong>Summary / Conclusion:</strong> This migration plan ensures a smooth transition from Magento to Shopify Plus by carefully extracting, transforming, and loading data while maintaining synchronization with ERP/CRM systems.</p>
 </section>
 
 <!-- SINGLE WAVE BREAKER (just 1 image, no gradient) -->
 <div class="wave-breaker">
   <img src="image2.png" alt="Single Wave Breaker Image">
 </div>
+
 
 <!-- SECTION 2: DATA CLEANUP -->
 <section id="cleanup">
@@ -386,8 +420,9 @@
     <li>Summarize what your script would do in 4–6 bullet points</li>
     <li>Write one SQL query that identifies duplicate customers (email or phone)</li>
   </ul>
-  <p><strong>Response:</strong> Following is the Data Cleanup Plan.</p>
+
   <p><strong>Python Dependencies:</strong> pandas, numpy, regex, phonenumbers, openpyxl/csv</p>
+
   <p><strong>Script Actions:</strong></p>
   <ul>
     <li>Deduplicate customer records by email/phone.</li>
@@ -396,6 +431,7 @@
     <li>Validate data types and Shopify constraints.</li>
     <li>Log and summarize changes made.</li>
   </ul>
+
   <p><strong>SQL Duplicate Query:</strong></p>
   <code>
 SELECT 'Email' AS DupField, email AS Identifier, COUNT(*) AS Count<br>
@@ -423,35 +459,33 @@ HAVING COUNT (*) &gt; 1;
   </ul>
   <p><strong>Task:</strong></p>
   <ul>
-    <li>Describe how you'd compare Shopify and Magento datasets for validation (tools/scripts)</li>
-    <li>How would you trace and fix inventory sync issues?</li>
-    <li>If product prices are wrong, how would you roll back or patch prices fast?</li>
+    <li>Compare Shopify &amp; Magento data for validation (tools/scripts)</li>
+    <li>Trace &amp; fix inventory sync issues</li>
+    <li>Roll back or patch prices fast if wrong</li>
   </ul>
-  <p><strong>Response:</strong></p>
-  <ul>
-    <li>Compare datasets (Magento vs Shopify) using pandas DataFrames.</li>
-    <li>Check detailed order histories, product listings, and customer data.</li>
-    <li>Trace inventory mismatches via SKU-level comparisons; fix using targeted sync or manual updates.</li>
-    <li>Correct pricing quickly via bulk CSV re-import or manual Shopify admin edits.</li>
-  </ul>
+  <p>
+    • Compare datasets with pandas DataFrames.<br>
+    • Check order histories, product listings, &amp; customer data.<br>
+    • Trace inventory mismatches (SKU-by-SKU), fix with sync/manual updates.<br>
+    • Correct pricing quickly via bulk CSV or Shopify admin edits.
+  </p>
 </section>
 
 <!-- SECTION 4: HIGH-VOLUME OPT -->
 <section id="optimize">
   <h2>4. High-Volume Optimization</h2>
-  <p><strong>Scenario:</strong> You have 6 hours for cutover and face Shopify API rate limits.</p>
+  <p><strong>Scenario:</strong> Only 6 hours for cutover &amp; facing Shopify API rate limits.</p>
   <p><strong>Task:</strong></p>
   <ul>
-    <li>How would you optimize data uploads to stay within Shopify's API limits?</li>
-    <li>Would you use Bulk APIs or parallel requests? Why?</li>
-    <li>How would you log failed pushes and retry automatically?</li>
+    <li>How to optimize data uploads to stay within Shopify's API limits</li>
+    <li>Use Bulk APIs or parallel requests? Why?</li>
+    <li>Logging failed pushes &amp; retry automatically</li>
   </ul>
-  <p><strong>Response:</strong></p>
-  <ul>
-    <li>Optimize uploads through batching and parallel requests within rate limits.</li>
-    <li>Leverage Bulk Operations API primarily for scalability; use parallel requests sparingly for data unsupported by Bulk.</li>
-    <li>Implement detailed logging and automatic retry mechanisms for robustness.</li>
-  </ul>
+  <p>
+    • Batch &amp; parallel with caution to respect rate limits.<br>
+    • Prefer Bulk Operations for large scale; parallel for leftover data.<br>
+    • Detailed logging &amp; auto-retry for robustness.
+  </p>
 </section>
 
 <!-- SECTION 5: LIVE ISSUES -->
@@ -460,42 +494,41 @@ HAVING COUNT (*) &gt; 1;
   <p><strong>Scenario:</strong> A live store shows incorrect prices due to a migration issue. Customers are complaining.</p>
   <p><strong>Task:</strong></p>
   <ul>
-    <li>What’s your immediate response plan?</li>
-    <li>Draft a short Slack message to internal stakeholders</li>
-    <li>How would you restore pricing within 30 minutes?</li>
+    <li>Immediate response plan</li>
+    <li>Short Slack message to internal stakeholders</li>
+    <li>Restore pricing within 30 minutes</li>
   </ul>
-  <p><strong>Response:</strong></p>
-  <p><em>Immediate Response:</em> Rapid assessment, temporary store lockdown if severe, quick fix deployment.</p>
-  <p><em>Slack Communication:</em> "Hey team – we've identified incorrect prices on the live store. I'm actively correcting this and expect resolution within 30 mins. Updates to follow."</p>
-  <p><em>Rapid Fix Strategy:</em> Bulk CSV upload for immediate price corrections, double-checking site, communication of resolution, documentation of lessons learned for future migration quality improvements.</p>
+  <p>
+    <strong>Immediate Response:</strong> Rapid assessment, potential lockdown, quick fix.<br>
+    <strong>Slack Example:</strong> “Hey team – we’ve identified incorrect prices on the live store. I’m actively correcting this and expect resolution within 30 mins. Updates to follow.”<br>
+    <strong>Rapid Fix:</strong> Bulk CSV to correct prices, verify, communicate resolution, document lessons learned.
+  </p>
 </section>
 
 <!-- SECTION 6: MIGRATION EXAMPLE -->
 <section id="migration-example">
-  <h2>6. My Migration</h2>
+  <h2>6. Your Migration</h2>
   <p><strong>Task:</strong> Share an example of a data migration or large dataset cleanup you’ve handled.</p>
 
   <p><strong>Problem:</strong></p>
   <p>
-    I recently worked on a research project involving the collection and analysis of clinical trial data from multiple online sources.
-    The primary challenge was consolidating disparate, large-scale datasets that were inconsistent, incomplete, and scattered across various web resources.
-    The data required significant cleaning, restructuring, and normalization to enable accurate, reliable analysis.
+    I worked on a research project collecting &amp; analyzing clinical trial data from multiple online sources.
+    The challenge was merging disparate, inconsistent, and incomplete large-scale datasets from various web resources.
+    Required significant cleaning, restructuring, &amp; normalization for accuracy.
   </p>
 
-  <p><strong>Tools and Approach:</strong></p>
+  <p><strong>Tools &amp; Approach:</strong></p>
   <ul>
-    <li><strong>Python Scripting:</strong> Automated scripts using Python, leveraging libraries such as pandas, requests, BeautifulSoup, and regex.</li>
-    <li><strong>Data Extraction and Integration:</strong> Custom web scraping tools (GitHub WebMD Scraper) to retrieve structured information from web pages.</li>
-    <li><strong>Data Cleaning and Normalization:</strong> Handling missing values, deduplicating records, standardizing data formats (e.g., dates, numerics), ensuring compliance with the required schema.</li>
-    <li><strong>Validation and Verification:</strong> Extensive checks using Python/pandas for data integrity, correctness, and consistency.</li>
+    <li><strong>Python Scripting:</strong> pandas, requests, BeautifulSoup, regex for scraping &amp; structuring</li>
+    <li><strong>Data Extraction &amp; Integration:</strong> Custom web scraping (GitHub WebMD Scraper)</li>
+    <li><strong>Data Cleaning &amp; Normalization:</strong> Handling missing values, deduping, standardizing formats</li>
+    <li><strong>Validation &amp; Verification:</strong> Python (pandas) for data integrity, correctness, consistency</li>
   </ul>
 
   <p><strong>Outcome:</strong></p>
   <p>
-    The comprehensive data migration and cleanup built a unified, high-quality dataset ready for advanced analytics.
-    This significantly enhanced accuracy and facilitated meaningful insights into the clinical trials under study.
-    By automating the extraction and cleaning processes, we saved considerable time and minimized manual errors,
-    ultimately improving the overall efficiency and reliability of the research project.
+    Unified, high-quality dataset for advanced analytics, boosted reliability &amp; accuracy,
+    saved time, minimized manual errors, improved overall efficiency for the research project.
   </p>
 </section>
 
